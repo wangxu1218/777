@@ -18,13 +18,15 @@ def clean_data(input1, input2, output):
     # Step 2: Drop any rows with missing values
     merged_df.dropna(inplace=True)
 
-    # Step 3: Drop any rows if their job value contains 'insurance' or 'Insurance'
+
     merged_df = merged_df[~merged_df['job'].str.contains('insurance', case=False)]
 
     # Step 4: Save the cleaned data in project folder
     merged_df.to_csv(output, index=False)
 
 
+
+    print(f"The cleaned data contains {merged_df.shape[0]} rows and {merged_df.shape[1]} columns.")
 def main():
     parser = argparse.ArgumentParser(description='Clean and merge respondent data files.')
     parser.add_argument('input1', type=str, help='Path to the respondent_contact.csv file')
